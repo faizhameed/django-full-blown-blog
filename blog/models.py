@@ -7,3 +7,7 @@ class Post(models.Model):
     content =models.TextField()
     date_posted=models.DateTimeField(default=timezone.now)
     auth = models.ForeignKey(User,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title ## this method return how the post we wanted to printed out
+
