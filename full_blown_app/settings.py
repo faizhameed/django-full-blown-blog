@@ -122,6 +122,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT=os.path.join(BASE_DIR,'media') # the project is set at project base directory and inside a file name media
+MEDIA_URL ='/media/' # profile_pic directory will be in media directory
 
 CRISPY_TEMPLATE_PACK ='bootstrap4'
 
