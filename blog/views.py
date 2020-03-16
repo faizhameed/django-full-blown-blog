@@ -1,12 +1,20 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic import ListView
 from .models import Post
 
 def home(request):
     context={
-       "posts":Post.objects.all()
+       "posts":Post.objects.all(),
+       "title":"bloghome"
     }
     return render(request,"blog/home.html",context)
+    
+class PostListView(ListView):# working with a class based view
+    model = Post
+    template_name = "blog/home.html"
+    context_object_name ="posts"
+
 
 def about(request):
     return render(request,"blog/about.html",{"title":"about"})
