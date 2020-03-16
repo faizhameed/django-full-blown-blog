@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import ListView,DetailView
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView
+    )
 from .models import Post
 
 def home(request):
@@ -18,7 +22,12 @@ class PostListView(ListView):# working with a class based view
 
 class PostDetailView(DetailView):   #<app>/<model>_<viewtype>.html
     model = Post
-    
+class PostCreateView(CreateView):
+    model = Post
+    fields =['title','content']
+    def form_valid(self, form):
+        self.instance.auth = self.request.user
+        return super().form_valid(form)
 
 def about(request):
     return render(request,"blog/about.html",{"title":"about"})
