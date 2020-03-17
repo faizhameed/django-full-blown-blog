@@ -7,6 +7,7 @@ from django.views.generic import (
     )
 from .models import Post
 
+
 def home(request):
     context={
        "posts":Post.objects.all(),
@@ -26,7 +27,7 @@ class PostCreateView(CreateView):
     model = Post
     fields =['title','content']
     def form_valid(self, form):
-        self.instance.auth = self.request.user
+        form.instance.auth = self.request.user
         return super().form_valid(form)
 
 def about(request):
